@@ -5,6 +5,3 @@ RUN apt -y update && apt -y upgrade
 
 # install pnpm
 RUN npm i -g pnpm
-
-# change user
-USER node
