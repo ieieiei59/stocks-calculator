@@ -7,3 +7,4 @@ services:
       dockerfile: ./docker/app/Dockerfile
     volumes:
       - ./:/workspace
+    working_dir: /workspace/app
