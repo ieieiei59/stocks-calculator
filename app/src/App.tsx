@@ -3,8 +3,6 @@ import "./App.css";
 import { Button, Grid, Stack, TextField, Typography } from "@suid/material";
 import ArrowCircleDownIcon from "@suid/icons-material/ArrowCircleDown";
 import { ZodType, z } from "zod";
-import { useFormHandler } from "solid-form-handler";
-import { zodSchema } from "solid-form-handler/zod";
 
 const positiveInt = z
   .number({ invalid_type_error: "数値を入力してください。" })
