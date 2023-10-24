@@ -8,4 +8,5 @@ services:
     volumes:
       - ./:/workspace
     working_dir: /workspace/app
-    user: root
+    user: node
+    tty: true
