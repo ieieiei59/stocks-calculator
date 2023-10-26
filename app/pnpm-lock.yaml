@@ -6,7 +6,7 @@ settings:
 
 dependencies:
   '@solidjs/router':
-    specifier: ^0.8.3
+    specifier: 0.8.3
     version: 0.8.3(solid-js@1.7.8)
   '@suid/icons-material':
     specifier: 0.6.9
