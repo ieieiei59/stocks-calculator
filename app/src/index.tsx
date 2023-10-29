@@ -10,7 +10,7 @@ const root = document.getElementById("root");
 
 // 一旦ベタ書きでベースパス問題を回避
 // 今後ビルド時にコマンドに渡す or 環境変数等利用する形に変更する
-const basePath = "/stocks-calculator";
+const basePath = "/";
 
 render(
   () => (
