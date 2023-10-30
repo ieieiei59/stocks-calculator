@@ -57,11 +57,13 @@ function HourCalculator() {
   const [getBeginTime, setBeginTime] = createSignal("");
   const [getEndTime, setEndTime] = createSignal("");
   const [getResult, setResult] = createSignal("");
+  const [getError, setError] = createSignal("");
 
   const resetForm = () => {
     setBeginTime("");
     setEndTime("");
     setResult("");
+    setError("");
   };
 
   return (
@@ -77,6 +79,14 @@ function HourCalculator() {
               start: getBeginTime(),
               end: getEndTime(),
             });
+            setError("");
+            if (
+              new Time(getEndTime()).toMinuteNumber() <
+              new Time(getBeginTime()).toMinuteNumber()
+            ) {
+              setError("終了時間は開始時間より後でなければなりません。");
+              return;
+            }
             const beginTime = new Time(getBeginTime());
             const endTime = new Time(getEndTime());
 
@@ -125,6 +135,9 @@ function HourCalculator() {
             </Stack>
           </Stack>
         </form>
+        <Show when={getError().length > 0}>
+          <Typography color="red">{getError()}</Typography>+{" "}
+        </Show>
         <Stack alignItems="center">
           <ArrowCircleDownIcon />
         </Stack>
