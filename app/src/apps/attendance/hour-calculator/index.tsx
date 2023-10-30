@@ -26,8 +26,12 @@ class TimeDiff {
 
   toString(): string {
     const diffAsMinute = this.to.toMinuteNumber() - this.from.toMinuteNumber();
+    const hours = Math.floor(diffAsMinute / 60);
+    const minutes = diffAsMinute % 60;
 
-    return `${Math.floor(diffAsMinute / 60)}:${diffAsMinute % 60}`;
+    return `${hours.toString().padStart(2, "0")}:${minutes
+      .toString()
+      .padStart(2, "0")}`;
   }
 
   toHourString(): string {
