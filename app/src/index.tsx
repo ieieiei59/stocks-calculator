@@ -5,8 +5,9 @@ import { Link, Route, Router, Routes } from "@solidjs/router";
 import "./index.css";
 import App from "./App";
 import HourCalculator from "./apps/attendance/hour-calculator";
-import { ParentProps, PropsWithChildren } from "solid-js";
+import { ParentProps } from "solid-js";
 import { Box, Typography } from "@suid/material";
+import PalletCalculator from "./apps/pallet/calculator";
 
 const root = document.getElementById("root");
 
@@ -20,7 +21,7 @@ function AppRoot() {
       <Route path={basePath}>
         <Route path="/" component={App} />
         <Route path="/pallet">
-          <Route path="/calculator" component={App}></Route>
+          <Route path="/calculator" component={PalletCalculator}></Route>
         </Route>
         <Route path="/attendance">
           <Route path="/hour-calculator" component={HourCalculator} />
