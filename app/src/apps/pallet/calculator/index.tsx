@@ -1,5 +1,5 @@
 import { Setter, Show, createSignal } from "solid-js";
-import "./App.css";
+import "../../../App.css";
 import { Button, Grid, Stack, TextField, Typography } from "@suid/material";
 import ArrowCircleDownIcon from "@suid/icons-material/ArrowCircleDown";
 import { ZodType, z } from "zod";

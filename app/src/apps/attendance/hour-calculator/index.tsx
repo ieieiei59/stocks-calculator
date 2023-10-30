@@ -1,6 +1,6 @@
-import { Button, Stack, TextField } from "@suid/material";
+import { Button, Grid, Stack, TextField, Typography } from "@suid/material";
 import ArrowCircleDownIcon from "@suid/icons-material/ArrowCircleDown";
-import { createSignal } from "solid-js";
+import { Show, createSignal } from "solid-js";
 
 class Time {
   readonly hour: number;
@@ -29,15 +29,35 @@ class TimeDiff {
 
     return `${Math.floor(diffAsMinute / 60)}:${diffAsMinute % 60}`;
   }
+
+  toHourString(): string {
+    return `${this.diffAsMinute / 60}`;
+  }
+
+  private get diffAsMinute(): number {
+    return this.to.toMinuteNumber() - this.from.toMinuteNumber();
+  }
+}
+
+type LabeledTextProps = { label: string; value: string };
+function LabeledText({ label, value }: LabeledTextProps) {
+  return (
+    <Grid container spacing={1}>
+      <Grid item>{label}:</Grid>
+      <Grid item>{value}</Grid>
+    </Grid>
+  );
 }
 
 function HourCalculator() {
   const [getBeginTime, setBeginTime] = createSignal("");
   const [getEndTime, setEndTime] = createSignal("");
+  const [getResult, setResult] = createSignal("");
 
   const resetForm = () => {
     setBeginTime("");
     setEndTime("");
+    setResult("");
   };
 
   return (
@@ -58,7 +78,7 @@ function HourCalculator() {
 
             const timeDiff = new TimeDiff(beginTime, endTime);
 
-            alert(timeDiff.toString());
+            setResult(`${timeDiff.toHourString()} (${timeDiff.toString()})`);
           }}
         >
           <Stack spacing={2} width="100%">
@@ -72,9 +92,6 @@ function HourCalculator() {
                     setBeginTime(() => value);
                   }}
                 />
-              </Stack>
-              <Stack alignItems="center">
-                <ArrowCircleDownIcon />
               </Stack>
               <Stack>
                 <TextField
@@ -104,6 +121,22 @@ function HourCalculator() {
             </Stack>
           </Stack>
         </form>
+        <Stack alignItems="center">
+          <ArrowCircleDownIcon />
+        </Stack>
+        <Show when={getResult().length > 0}>
+          <Stack>
+            <Typography color="silver">
+              <LabeledText label="開始時間" value={getBeginTime()} />
+            </Typography>
+            <Typography color="silver">
+              <LabeledText label="終了時間" value={getEndTime()} />
+            </Typography>
+            <Typography fontWeight="bold">
+              <LabeledText label="稼働時間" value={getResult()} />
+            </Typography>
+          </Stack>
+        </Show>
       </Stack>
     </Stack>
   );
