@@ -1,9 +1,9 @@
 import { Setter, Show, createSignal } from "solid-js";
-import "../../../App.css";
 import { Button, Grid, Stack, TextField, Typography } from "@suid/material";
 import ArrowCircleDownIcon from "@suid/icons-material/ArrowCircleDown";
 import { ZodType, z } from "zod";
 
+import "../../../App.css";
 const positiveInt = z
   .number({ invalid_type_error: "数値を入力してください。" })
   .positive("1以上の数値を入力してください。")
