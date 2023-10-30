@@ -84,11 +84,6 @@ function PalletCalculator() {
             event.preventDefault();
             setResult(() => undefined);
             const result = calcResult(getTotal(), getQuantityPerPallet());
-            console.log({
-              result,
-              total: getTotal(),
-              quantityPerPallet: getQuantityPerPallet(),
-            });
             setResult(() => result);
           }}
         >
