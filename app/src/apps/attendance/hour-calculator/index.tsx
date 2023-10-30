@@ -7,10 +7,12 @@ class Time {
   readonly minute: number;
 
   constructor(timeStr: string) {
-    const splittedTimeStr = timeStr.split(":");
-    if (splittedTimeStr.length !== 2) {
+    const timePattern = /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/;
+    if (!timePattern.test(timeStr)) {
       throw new Error("invalid time string error");
     }
+
+    const splittedTimeStr = timeStr.split(":");
 
     this.hour = Number(splittedTimeStr[0]);
     this.minute = Number(splittedTimeStr[1]);
@@ -136,7 +138,7 @@ function HourCalculator() {
           </Stack>
         </form>
         <Show when={getError().length > 0}>
-          <Typography color="red">{getError()}</Typography>+{" "}
+          <Typography color="red">{getError()}</Typography>
         </Show>
         <Stack alignItems="center">
           <ArrowCircleDownIcon />
